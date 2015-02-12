@@ -1,0 +1,84 @@
+#profile_heading {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#container {
+  margin: 0 auto;
+  text-align: center;
+  height: 300px;
+  width: 360px;
+  /*background-color: yellow;*/
+}
+
+#avatar_container {
+  height:300px;
+  width: 225px;
+  border:1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#avatar {
+  height: 300px;
+  line-height: 79%;
+  max-height: 300px;
+  max-width:200px;
+}
+
+#file_size_msg_box1 {
+  color: red;
+  visibility: hidden;
+}
+
+#image_form {
+  margin: 0 auto;
+}
+#image_preview {
+  /*background-color: purple;*/
+  position:absolute;
+  top:200px;
+  margin-left:10%;
+  height: 200px;
+  width: 200px;
+}
+
+#form {
+  margin-top:130px;
+  text-align:center;
+  /*background-color: green;*/
+}
+#ancestor {
+  
+}
+#gallery {
+  /*background-color: red;*/
+  height:120px;
+  width:400px;
+}
+#gallery_preview {
+  position:absolute;
+  height:200px;
+  width:200px;
+  top:530px;
+  margin-left: auto;
+  margin-right: auto;
+  /*background-color: black;*/
+  margin-left: 10%;
+}
+div > span {
+  cursor: pointer;
+}
+#ancestor > div {
+  color: #333333;
+  font-family: 'Palatino Linotype',
+  'Book Antiqua', 'Palatino',serif;
+  border: 0.5px solid black;
+}
+
+#file_size_msg_box2 {
+  color: red;
+  visibility: hidden;
+  margin-top:-10px;
+}

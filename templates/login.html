@@ -1,0 +1,42 @@
+<!DOCTYPE html5>
+<html>
+<meta charset="utf-8">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/login.css">
+</head>
+
+<body>
+
+<div id="container">
+ {% if registration %}
+   <h1>Create your account </h1>
+ {% else %}
+   <h1> Welcome ! Sign in below </h1>
+ {% endif %}
+ <form action="" method="POST">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+    <div {% if field.errors %} class="field_error" {% endif %}>
+      {{ field }}
+      {% for err in field.errors %}
+      <span class="error_message">{{ err }}</span>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  {% if registration == False %}
+  <input type="submit" value="Sign In" />
+  <a href="/registration/">Not registered? Click here.</a>
+  {% else %}
+  <input type="submit" value="Register" />
+  <a href="/">Back to Homepage</a>
+  {% endif %}
+  {% if message %}
+  <p class="error_message">{{message}}</p>
+  {% endif %}
+ </form>
+</div>
+
+</body>
+
+</html>

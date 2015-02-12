@@ -1,0 +1,105 @@
+<!DOCTYPE html5>
+
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="/static/bio/bio.js"></script>
+  <script src="/static/bio/handlebars-v2.0.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/bio/loader.css"/>
+  <link rel="stylesheet" type="text/css" href="/static/bio/profile.css"/>
+</head>
+
+<body>
+ <p style="display:inline">{{ user }}</p><p id="profile_heading">Profile</p>
+ <p><a href="/logout/">Logout</a></p>
+ <div id="container">
+  <div id="avatar_container">
+   <img id="avatar" src="{{ serving_url }}"/>
+  </div>
+
+  <form action="." id="image_form" method="POST" enctype="multipart/form-data">
+   {% csrf_token %}
+   {{form.as_p}}
+   <div id="file_size_msg_box1">Maximum Upload 2.5 MB</div>
+  </form>
+  
+ </div>
+
+<div id="image_preview">
+</div>
+
+  <form id="form" action="javascript:void(0);" name="user_profile"> 
+   {% csrf_token %} 
+   <!-- escape django templating -->
+   {% verbatim %}
+   <div id="ancestor">
+    <!-- handlebars.js -->
+     <div id="handlebars_container"></div>
+     <script id="bio-template" type="text/x-handlebars-template">
+      {{#if hometown}}
+        <div>Hometown: {{hometown}}  <span name="hometown" class="delete"><img src="/static/trash.png"/></span></div>
+      {{else}} 
+        <div><input type="text" class="blur" id="hometown" name="hometown" placeholder="hometown"></div>
+      {{/if}}<br>
+
+      {{#if employer}}
+        <div>Employer: {{employer}}  <span name="employer" class="delete"><img src="/static/trash.png"/></span></div>
+      {{else}}
+        <div><input type="text" class="blur" id="employer" name="employer" placeholder="employer"></div>
+      {{/if}}<br>
+
+      {{#if college}}
+        <div>College: {{college}}  <span name="college" class="delete"><img src="/static/trash.png"/></span></div>
+      {{else}}
+       <div> <input type="text" class="blur" id="college" name="college" placeholder="college"></div>
+      {{/if}}<br>
+
+      {{#if color}}
+        <div>Color: {{color}}  <span name="color" class="delete"><img src="/static/trash.png"/></span></div>
+      {{else}}
+        <div><input type="text" class="blur" id="color" name="color" placeholder="favorite color"></div>
+      {{/if}}<br>
+
+      {{#if hobby}}
+        <div>Hobby: {{hobby}}  <span name="hobby" class="delete"><img src="/static/trash.png"/></span></div>
+      {{else}}
+        <div><input type="text" class="blur" id="hobby" name="hobby" placeholder="favorite hobby"></div>
+      {{/if}}<br>
+     </div> 
+     </script>
+   <!-- end ancestor -->
+   </div>
+  <!--end handlebars.js -->
+  {% endverbatim %}
+  </form>
+
+
+<div id="gallery">
+ <h3>Image Gallery</h3>
+
+ <form action="/my_account/gallery/" id="gallery_form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}  
+  {{gallery_form.as_p}}
+  <div id="file_size_msg_box2">Maximum Upload 2.5 MB</div>
+ </form>
+</div>
+
+<div id="gallery_preview">
+</div>
+
+{% verbatim %}
+<!-- handlebars.js -->
+<div id="handlebars_gallery_container"></div>
+ <script id="gallery-template" type="text/x-handlebars-template">
+  <div id="gallery_container">
+   {{#each urls}}
+     <a href={{this}}><img class="ggpht" src="{{this}}=s150" /></a>
+   {{/each}}
+  </div>
+ </script>
+{% endverbatim %}
+
+<div class="modal"></div>
+</body>
+</html>
